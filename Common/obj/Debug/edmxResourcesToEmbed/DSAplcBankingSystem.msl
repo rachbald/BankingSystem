@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankingSystemEntitiesStoreContainer" CdmEntityContainer="BankingSystemDSAplcEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="BankingSystemEntities.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="NameDesc" ColumnName="NameDesc" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Creation" ColumnName="Creation" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountTypes">
+      <EntityTypeMapping TypeName="BankingSystemEntities.AccountType">
+        <MappingFragment StoreEntitySet="AccountType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="BankingSystemEntities.Appointment">
+        <MappingFragment StoreEntitySet="Appointments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppointmentSlots">
+      <EntityTypeMapping TypeName="BankingSystemEntities.AppointmentSlot">
+        <MappingFragment StoreEntitySet="AppointmentSlots">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Weekday" ColumnName="Weekday" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppointmentStatus">
+      <EntityTypeMapping TypeName="BankingSystemEntities.AppointmentStatu">
+        <MappingFragment StoreEntitySet="AppointmentStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FixedRates">
+      <EntityTypeMapping TypeName="BankingSystemEntities.FixedRate">
+        <MappingFragment StoreEntitySet="FixedRates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Months" ColumnName="Months" />
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="BankingSystemEntities.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="BankingSystemEntities.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CurrentAccount" ColumnName="CurrentAccount" />
+          <ScalarProperty Name="SecondaryAccount" ColumnName="SecondaryAccount" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTypes">
+      <EntityTypeMapping TypeName="BankingSystemEntities.TransactionType">
+        <MappingFragment StoreEntitySet="TransactionType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Transaction" ColumnName="Transaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BankingSystemEntities.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Blocket" ColumnName="Blocket" />
+          <ScalarProperty Name="NoOfAttempts" ColumnName="NoOfAttempts" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserRole" TypeName="BankingSystemEntities.UserRole" StoreEntitySet="UserRole">
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Towns">
+      <EntityTypeMapping TypeName="BankingSystemEntities.Town">
+        <MappingFragment StoreEntitySet="Towns">
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
