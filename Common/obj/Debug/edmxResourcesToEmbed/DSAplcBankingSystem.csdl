@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankingSystemEntities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="BankingSystemDSAplcEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="BankingSystemEntities.Account" />
+    <EntitySet Name="AccountTypes" EntityType="BankingSystemEntities.AccountType" />
+    <EntitySet Name="Appointments" EntityType="BankingSystemEntities.Appointment" />
+    <EntitySet Name="AppointmentSlots" EntityType="BankingSystemEntities.AppointmentSlot" />
+    <EntitySet Name="AppointmentStatus" EntityType="BankingSystemEntities.AppointmentStatu" />
+    <EntitySet Name="FixedRates" EntityType="BankingSystemEntities.FixedRate" />
+    <EntitySet Name="Roles" EntityType="BankingSystemEntities.Role" />
+    <EntitySet Name="Transactions" EntityType="BankingSystemEntities.Transaction" />
+    <EntitySet Name="TransactionTypes" EntityType="BankingSystemEntities.TransactionType" />
+    <EntitySet Name="Users" EntityType="BankingSystemEntities.User" />
+    <AssociationSet Name="FK_Accounts_AccountType" Association="BankingSystemEntities.FK_Accounts_AccountType">
+      <End Role="AccountType" EntitySet="AccountTypes" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_FixedRates" Association="BankingSystemEntities.FK_Accounts_FixedRates">
+      <End Role="FixedRates" EntitySet="FixedRates" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Users" Association="BankingSystemEntities.FK_Accounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointments_AppointmentStatus" Association="BankingSystemEntities.FK_Appointments_AppointmentStatus">
+      <End Role="AppointmentStatus" EntitySet="AppointmentStatus" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_TransactionType" Association="BankingSystemEntities.FK_Transactions_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionTypes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="UserRole" Association="BankingSystemEntities.UserRole">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Users" Association="BankingSystemEntities.FK_Transactions_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Towns" EntityType="BankingSystemEntities.Town" />
+    <AssociationSet Name="FK_Users_Towns" Association="BankingSystemEntities.FK_Users_Towns">
+      <End Role="Town" EntitySet="Towns" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointments_AppointmentStatus1" Association="BankingSystemEntities.FK_Appointments_AppointmentStatus1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountNo" />
+    </Key>
+    <Property Name="AccountNo" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="NameDesc" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Currency" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Creation" Type="DateTime" Nullable="false" />
+    <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="User" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Int32" />
+    <NavigationProperty Name="AccountType" Relationship="BankingSystemEntities.FK_Accounts_AccountType" FromRole="Accounts" ToRole="AccountType" />
+    <NavigationProperty Name="FixedRate" Relationship="BankingSystemEntities.FK_Accounts_FixedRates" FromRole="Accounts" ToRole="FixedRates" />
+    <NavigationProperty Name="User1" Relationship="BankingSystemEntities.FK_Accounts_Users" FromRole="Accounts" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Accounts" Relationship="BankingSystemEntities.FK_Accounts_AccountType" FromRole="AccountType" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <Property Name="User" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AppointmentStatu" Relationship="BankingSystemEntities.FK_Appointments_AppointmentStatus" FromRole="Appointments" ToRole="AppointmentStatus" />
+    <NavigationProperty Name="User1" Relationship="BankingSystemEntities.FK_Appointments_AppointmentStatus1" FromRole="Appointment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="AppointmentSlot">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Day" Type="Int32" Nullable="false" />
+    <Property Name="Weekday" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="AppointmentStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Appointments" Relationship="BankingSystemEntities.FK_Appointments_AppointmentStatus" FromRole="AppointmentStatus" ToRole="Appointments" />
+  </EntityType>
+  <EntityType Name="FixedRate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Months" Type="Int32" Nullable="false" />
+    <Property Name="Interest" Type="Decimal" Nullable="false" Precision="3" Scale="3" />
+    <NavigationProperty Name="Accounts" Relationship="BankingSystemEntities.FK_Accounts_FixedRates" FromRole="FixedRates" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Users" Relationship="BankingSystemEntities.UserRole" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CurrentAccount" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="SecondaryAccount" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="TransactionType" Relationship="BankingSystemEntities.FK_Transactions_TransactionType" FromRole="Transactions" ToRole="TransactionType" />
+    <NavigationProperty Name="User1" Relationship="BankingSystemEntities.FK_Transactions_Users" FromRole="Transaction" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Transaction" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Transactions" Relationship="BankingSystemEntities.FK_Transactions_TransactionType" FromRole="TransactionType" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Pin" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Town" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="BankingSystemEntities.FK_Accounts_Users" FromRole="Users" ToRole="Accounts" />
+    <NavigationProperty Name="Roles" Relationship="BankingSystemEntities.UserRole" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Transactions" Relationship="BankingSystemEntities.FK_Transactions_Users" FromRole="User" ToRole="Transaction" />
+    <NavigationProperty Name="Town1" Relationship="BankingSystemEntities.FK_Users_Towns" FromRole="User" ToRole="Town" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Street" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="NoOfAttempts" Nullable="false" />
+    <Property Type="Boolean" Name="Blocket" Nullable="false" />
+    <Property Type="DateTime" Name="Dob" Nullable="false" />
+    <NavigationProperty Name="Appointments" Relationship="BankingSystemEntities.FK_Appointments_AppointmentStatus1" FromRole="User" ToRole="Appointment" />
+  </EntityType>
+  <Association Name="FK_Accounts_AccountType">
+    <End Role="AccountType" Type="BankingSystemEntities.AccountType" Multiplicity="1" />
+    <End Role="Accounts" Type="BankingSystemEntities.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_FixedRates">
+    <End Role="FixedRates" Type="BankingSystemEntities.FixedRate" Multiplicity="0..1" />
+    <End Role="Accounts" Type="BankingSystemEntities.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FixedRates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Rate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Users">
+    <End Role="Users" Type="BankingSystemEntities.User" Multiplicity="1" />
+    <End Role="Accounts" Type="BankingSystemEntities.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointments_AppointmentStatus">
+    <End Role="AppointmentStatus" Type="BankingSystemEntities.AppointmentStatu" Multiplicity="1" />
+    <End Role="Appointments" Type="BankingSystemEntities.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppointmentStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_TransactionType">
+    <End Role="TransactionType" Type="BankingSystemEntities.TransactionType" Multiplicity="1" />
+    <End Role="Transactions" Type="BankingSystemEntities.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserRole">
+    <End Role="Roles" Type="BankingSystemEntities.Role" Multiplicity="*" />
+    <End Role="Users" Type="BankingSystemEntities.User" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Transactions_Users">
+    <End Type="BankingSystemEntities.User" Role="User" Multiplicity="1" />
+    <End Type="BankingSystemEntities.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Country" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="BankingSystemEntities.FK_Users_Towns" FromRole="Town" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Users_Towns">
+    <End Type="BankingSystemEntities.Town" Role="Town" Multiplicity="1" />
+    <End Type="BankingSystemEntities.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Town" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointments_AppointmentStatus1">
+    <End Type="BankingSystemEntities.User" Role="User" Multiplicity="1" />
+    <End Type="BankingSystemEntities.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

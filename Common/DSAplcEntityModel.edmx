@@ -1,0 +1,1079 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DSAplcDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DSAplcDatabaseModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="DSAplcDatabaseModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AccountType" EntityType="DSAplcDatabaseModel.Store.AccountType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Appointments" EntityType="DSAplcDatabaseModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AppointmentSlots" EntityType="DSAplcDatabaseModel.Store.AppointmentSlots" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AppointmentStatus" EntityType="DSAplcDatabaseModel.Store.AppointmentStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Currency" EntityType="DSAplcDatabaseModel.Store.Currency" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FixedRates" EntityType="DSAplcDatabaseModel.Store.FixedRates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Log" EntityType="DSAplcDatabaseModel.Store.Log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="DSAplcDatabaseModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Town" EntityType="DSAplcDatabaseModel.Store.Town" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transactions" EntityType="DSAplcDatabaseModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TransactionType" EntityType="DSAplcDatabaseModel.Store.TransactionType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRoles" EntityType="DSAplcDatabaseModel.Store.UserRoles" store:Type="Tables" store:Schema="dbo" store:Name="UserRoles">
+            <DefiningQuery>SELECT 
+      [UserRoles].[User] AS [User], 
+      [UserRoles].[Role] AS [Role]
+      FROM [dbo].[UserRoles] AS [UserRoles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Users" EntityType="DSAplcDatabaseModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Accounts_AccountType" Association="DSAplcDatabaseModel.Store.FK_Accounts_AccountType">
+            <End Role="AccountType" EntitySet="AccountType" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Currency" Association="DSAplcDatabaseModel.Store.FK_Accounts_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_FixedRates" Association="DSAplcDatabaseModel.Store.FK_Accounts_FixedRates">
+            <End Role="FixedRates" EntitySet="FixedRates" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Users" Association="DSAplcDatabaseModel.Store.FK_Accounts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_Appointments" Association="DSAplcDatabaseModel.Store.FK_Appointments_Appointments">
+            <End Role="Appointments" EntitySet="Appointments" />
+            <End Role="Appointments1" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_AppointmentStatus" Association="DSAplcDatabaseModel.Store.FK_Appointments_AppointmentStatus">
+            <End Role="AppointmentStatus" EntitySet="AppointmentStatus" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Accounts" Association="DSAplcDatabaseModel.Store.FK_Log_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Currency" Association="DSAplcDatabaseModel.Store.FK_Log_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_TransactionType" Association="DSAplcDatabaseModel.Store.FK_Log_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Currency" Association="DSAplcDatabaseModel.Store.FK_Transactions_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_TransactionType" Association="DSAplcDatabaseModel.Store.FK_Transactions_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Users" Association="DSAplcDatabaseModel.Store.FK_Transactions_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Role" Association="DSAplcDatabaseModel.Store.FK_UserRoles_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Users" Association="DSAplcDatabaseModel.Store.FK_UserRoles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Towns" Association="DSAplcDatabaseModel.Store.FK_Users_Towns">
+            <End Role="Town" EntitySet="Town" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Currency" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Creation" Type="date" Nullable="false" />
+          <Property Name="Balance" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Time" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppointmentSlots">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Weekday" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Time" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AppointmentStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Currency" Type="varchar" Nullable="false" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="FixedRates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Months" Type="int" Nullable="false" />
+          <Property Name="Interest" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Account" Type="int" Nullable="false" />
+          <Property Name="Other" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Currency" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Client" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="CurrentAccount" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="SecondaryAccount" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Currency" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DSAplcDatabase.dbo.UserRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Pin" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Street" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Town" Type="int" Nullable="false" />
+          <Property Name="NoOfAttempts" Type="int" Nullable="false" />
+          <Property Name="Blocked" Type="bit" Nullable="false" />
+          <Property Name="Dob" Type="date" Nullable="false" />
+          <Property Name="Token" Type="varchar(max)" Nullable="false" />
+          <Property Name="EncryptionAlgorithm" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accounts_AccountType">
+          <End Role="AccountType" Type="DSAplcDatabaseModel.Store.AccountType" Multiplicity="1" />
+          <End Role="Accounts" Type="DSAplcDatabaseModel.Store.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Currency">
+          <End Role="Currency" Type="DSAplcDatabaseModel.Store.Currency" Multiplicity="1" />
+          <End Role="Accounts" Type="DSAplcDatabaseModel.Store.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_FixedRates">
+          <End Role="FixedRates" Type="DSAplcDatabaseModel.Store.FixedRates" Multiplicity="0..1" />
+          <End Role="Accounts" Type="DSAplcDatabaseModel.Store.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FixedRates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Rate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Users">
+          <End Role="Users" Type="DSAplcDatabaseModel.Store.Users" Multiplicity="1" />
+          <End Role="Accounts" Type="DSAplcDatabaseModel.Store.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_Appointments">
+          <End Role="Appointments" Type="DSAplcDatabaseModel.Store.Appointments" Multiplicity="1" />
+          <End Role="Appointments1" Type="DSAplcDatabaseModel.Store.Appointments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Appointments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_AppointmentStatus">
+          <End Role="AppointmentStatus" Type="DSAplcDatabaseModel.Store.AppointmentStatus" Multiplicity="1" />
+          <End Role="Appointments" Type="DSAplcDatabaseModel.Store.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppointmentStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Accounts">
+          <End Role="Accounts" Type="DSAplcDatabaseModel.Store.Accounts" Multiplicity="1" />
+          <End Role="Log" Type="DSAplcDatabaseModel.Store.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Currency">
+          <End Role="Currency" Type="DSAplcDatabaseModel.Store.Currency" Multiplicity="1" />
+          <End Role="Log" Type="DSAplcDatabaseModel.Store.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_TransactionType">
+          <End Role="TransactionType" Type="DSAplcDatabaseModel.Store.TransactionType" Multiplicity="1" />
+          <End Role="Log" Type="DSAplcDatabaseModel.Store.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Currency">
+          <End Role="Currency" Type="DSAplcDatabaseModel.Store.Currency" Multiplicity="0..1" />
+          <End Role="Transactions" Type="DSAplcDatabaseModel.Store.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_TransactionType">
+          <End Role="TransactionType" Type="DSAplcDatabaseModel.Store.TransactionType" Multiplicity="1" />
+          <End Role="Transactions" Type="DSAplcDatabaseModel.Store.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Users">
+          <End Role="Users" Type="DSAplcDatabaseModel.Store.Users" Multiplicity="1" />
+          <End Role="Transactions" Type="DSAplcDatabaseModel.Store.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Role">
+          <End Role="Role" Type="DSAplcDatabaseModel.Store.Role" Multiplicity="1" />
+          <End Role="UserRoles" Type="DSAplcDatabaseModel.Store.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Users">
+          <End Role="Users" Type="DSAplcDatabaseModel.Store.Users" Multiplicity="1" />
+          <End Role="UserRoles" Type="DSAplcDatabaseModel.Store.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Towns">
+          <End Role="Town" Type="DSAplcDatabaseModel.Store.Town" Multiplicity="1" />
+          <End Role="Users" Type="DSAplcDatabaseModel.Store.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Town">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Town" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DSAplcDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DSAplcEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="DSAplcDatabaseModel.Account" />
+          <EntitySet Name="AccountTypes" EntityType="DSAplcDatabaseModel.AccountType" />
+          <EntitySet Name="Appointments" EntityType="DSAplcDatabaseModel.Appointment" />
+          <EntitySet Name="AppointmentSlots" EntityType="DSAplcDatabaseModel.AppointmentSlot" />
+          <EntitySet Name="AppointmentStatus" EntityType="DSAplcDatabaseModel.AppointmentStatu" />
+          <EntitySet Name="Currencies" EntityType="DSAplcDatabaseModel.Currency" />
+          <EntitySet Name="FixedRates" EntityType="DSAplcDatabaseModel.FixedRate" />
+          <EntitySet Name="Logs" EntityType="DSAplcDatabaseModel.Log" />
+          <EntitySet Name="Roles" EntityType="DSAplcDatabaseModel.Role" />
+          <EntitySet Name="Towns" EntityType="DSAplcDatabaseModel.Town" />
+          <EntitySet Name="Transactions" EntityType="DSAplcDatabaseModel.Transaction" />
+          <EntitySet Name="TransactionTypes" EntityType="DSAplcDatabaseModel.TransactionType" />
+          <EntitySet Name="Users" EntityType="DSAplcDatabaseModel.User" />
+          <AssociationSet Name="FK_Accounts_AccountType" Association="DSAplcDatabaseModel.FK_Accounts_AccountType">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Currency" Association="DSAplcDatabaseModel.FK_Accounts_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_FixedRates" Association="DSAplcDatabaseModel.FK_Accounts_FixedRates">
+            <End Role="FixedRate" EntitySet="FixedRates" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Users" Association="DSAplcDatabaseModel.FK_Accounts_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Accounts" Association="DSAplcDatabaseModel.FK_Log_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_Appointments" Association="DSAplcDatabaseModel.FK_Appointments_Appointments">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="Appointment1" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_AppointmentStatus" Association="DSAplcDatabaseModel.FK_Appointments_AppointmentStatus">
+            <End Role="AppointmentStatu" EntitySet="AppointmentStatus" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Currency" Association="DSAplcDatabaseModel.FK_Log_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Currency" Association="DSAplcDatabaseModel.FK_Transactions_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_TransactionType" Association="DSAplcDatabaseModel.FK_Log_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Towns" Association="DSAplcDatabaseModel.FK_Users_Towns">
+            <End Role="Town" EntitySet="Towns" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_TransactionType" Association="DSAplcDatabaseModel.FK_Transactions_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Users" Association="DSAplcDatabaseModel.FK_Transactions_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="UserRoles" Association="DSAplcDatabaseModel.UserRoles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AccountNo" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Currency" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Creation" Nullable="false" />
+          <Property Type="Decimal" Name="Balance" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="User" Nullable="false" />
+          <Property Type="Int32" Name="Rate" />
+          <NavigationProperty Name="AccountType" Relationship="DSAplcDatabaseModel.FK_Accounts_AccountType" FromRole="Account" ToRole="AccountType" />
+          <NavigationProperty Name="Currency1" Relationship="DSAplcDatabaseModel.FK_Accounts_Currency" FromRole="Account" ToRole="Currency" />
+          <NavigationProperty Name="FixedRate" Relationship="DSAplcDatabaseModel.FK_Accounts_FixedRates" FromRole="Account" ToRole="FixedRate" />
+          <NavigationProperty Name="User1" Relationship="DSAplcDatabaseModel.FK_Accounts_Users" FromRole="Account" ToRole="User" />
+          <NavigationProperty Name="Logs" Relationship="DSAplcDatabaseModel.FK_Log_Accounts" FromRole="Account" ToRole="Log" />
+        </EntityType>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="DSAplcDatabaseModel.FK_Accounts_AccountType" FromRole="AccountType" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Time" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="User" Nullable="false" />
+          <Property Type="Int32" Name="State" Nullable="false" />
+          <NavigationProperty Name="Appointments1" Relationship="DSAplcDatabaseModel.FK_Appointments_Appointments" FromRole="Appointment" ToRole="Appointment1" />
+          <NavigationProperty Name="Appointment1" Relationship="DSAplcDatabaseModel.FK_Appointments_Appointments" FromRole="Appointment1" ToRole="Appointment" />
+          <NavigationProperty Name="AppointmentStatu" Relationship="DSAplcDatabaseModel.FK_Appointments_AppointmentStatus" FromRole="Appointment" ToRole="AppointmentStatu" />
+        </EntityType>
+        <EntityType Name="AppointmentSlot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Weekday" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Time" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AppointmentStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Appointments" Relationship="DSAplcDatabaseModel.FK_Appointments_AppointmentStatus" FromRole="AppointmentStatu" ToRole="Appointment" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Currency1" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="DSAplcDatabaseModel.FK_Accounts_Currency" FromRole="Currency" ToRole="Account" />
+          <NavigationProperty Name="Logs" Relationship="DSAplcDatabaseModel.FK_Log_Currency" FromRole="Currency" ToRole="Log" />
+          <NavigationProperty Name="Transactions" Relationship="DSAplcDatabaseModel.FK_Transactions_Currency" FromRole="Currency" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="FixedRate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Months" Nullable="false" />
+          <Property Type="Decimal" Name="Interest" Nullable="false" Precision="3" Scale="2" />
+          <NavigationProperty Name="Accounts" Relationship="DSAplcDatabaseModel.FK_Accounts_FixedRates" FromRole="FixedRate" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int32" Name="Account" Nullable="false" />
+          <Property Type="String" Name="Other" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Currency" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Client" Nullable="false" />
+          <NavigationProperty Name="Account1" Relationship="DSAplcDatabaseModel.FK_Log_Accounts" FromRole="Log" ToRole="Account" />
+          <NavigationProperty Name="Currency1" Relationship="DSAplcDatabaseModel.FK_Log_Currency" FromRole="Log" ToRole="Currency" />
+          <NavigationProperty Name="TransactionType" Relationship="DSAplcDatabaseModel.FK_Log_TransactionType" FromRole="Log" ToRole="TransactionType" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="DSAplcDatabaseModel.UserRoles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="DSAplcDatabaseModel.FK_Users_Towns" FromRole="Town" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="User" Nullable="false" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="CurrentAccount" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SecondaryAccount" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Currency" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Currency1" Relationship="DSAplcDatabaseModel.FK_Transactions_Currency" FromRole="Transaction" ToRole="Currency" />
+          <NavigationProperty Name="TransactionType" Relationship="DSAplcDatabaseModel.FK_Transactions_TransactionType" FromRole="Transaction" ToRole="TransactionType" />
+          <NavigationProperty Name="User1" Relationship="DSAplcDatabaseModel.FK_Transactions_Users" FromRole="Transaction" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Transaction" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Logs" Relationship="DSAplcDatabaseModel.FK_Log_TransactionType" FromRole="TransactionType" ToRole="Log" />
+          <NavigationProperty Name="Transactions" Relationship="DSAplcDatabaseModel.FK_Transactions_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pin" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Surname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Town" Nullable="false" />
+          <Property Type="Int32" Name="NoOfAttempts" Nullable="false" />
+          <Property Type="Boolean" Name="Blocked" Nullable="false" />
+          <Property Type="DateTime" Name="Dob" Nullable="false" />
+          <Property Type="String" Name="Token" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EncryptionAlgorithm" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="DSAplcDatabaseModel.FK_Accounts_Users" FromRole="User" ToRole="Account" />
+          <NavigationProperty Name="Town1" Relationship="DSAplcDatabaseModel.FK_Users_Towns" FromRole="User" ToRole="Town" />
+          <NavigationProperty Name="Transactions" Relationship="DSAplcDatabaseModel.FK_Transactions_Users" FromRole="User" ToRole="Transaction" />
+          <NavigationProperty Name="Roles" Relationship="DSAplcDatabaseModel.UserRoles" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Accounts_AccountType">
+          <End Type="DSAplcDatabaseModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Currency">
+          <End Type="DSAplcDatabaseModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_FixedRates">
+          <End Type="DSAplcDatabaseModel.FixedRate" Role="FixedRate" Multiplicity="0..1" />
+          <End Type="DSAplcDatabaseModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FixedRate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Rate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Users">
+          <End Type="DSAplcDatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Accounts">
+          <End Type="DSAplcDatabaseModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_Appointments">
+          <End Type="DSAplcDatabaseModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Appointment" Role="Appointment1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Appointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_AppointmentStatus">
+          <End Type="DSAplcDatabaseModel.AppointmentStatu" Role="AppointmentStatu" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppointmentStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Currency">
+          <End Type="DSAplcDatabaseModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Currency">
+          <End Type="DSAplcDatabaseModel.Currency" Role="Currency" Multiplicity="0..1" />
+          <End Type="DSAplcDatabaseModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_TransactionType">
+          <End Type="DSAplcDatabaseModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Towns">
+          <End Type="DSAplcDatabaseModel.Town" Role="Town" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Town">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Town" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_TransactionType">
+          <End Type="DSAplcDatabaseModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Users">
+          <End Type="DSAplcDatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="DSAplcDatabaseModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserRoles">
+          <End Type="DSAplcDatabaseModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="DSAplcDatabaseModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DSAplcDatabaseModelStoreContainer" CdmEntityContainer="DSAplcEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Creation" ColumnName="Creation" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountTypes">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.AccountType">
+              <MappingFragment StoreEntitySet="AccountType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppointmentSlots">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.AppointmentSlot">
+              <MappingFragment StoreEntitySet="AppointmentSlots">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Weekday" ColumnName="Weekday" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppointmentStatus">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.AppointmentStatu">
+              <MappingFragment StoreEntitySet="AppointmentStatus">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Currency1" ColumnName="Currency" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FixedRates">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.FixedRate">
+              <MappingFragment StoreEntitySet="FixedRates">
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towns">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Town">
+              <MappingFragment StoreEntitySet="Town">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SecondaryAccount" ColumnName="SecondaryAccount" />
+                <ScalarProperty Name="CurrentAccount" ColumnName="CurrentAccount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="Transaction" ColumnName="Transaction" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DSAplcDatabaseModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="EncryptionAlgorithm" ColumnName="EncryptionAlgorithm" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+                <ScalarProperty Name="NoOfAttempts" ColumnName="NoOfAttempts" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserRoles" TypeName="DSAplcDatabaseModel.UserRoles" StoreEntitySet="UserRoles">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="User" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="Role" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DSAplcEntityModel">
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Account" Width="1.5" PointX="3" PointY="3.75" Height="3.7109993489583388" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.AccountType" Width="1.5" PointX="0.75" PointY="8" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Appointment" Width="1.5" PointX="5" PointY="8.625" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.AppointmentSlot" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.AppointmentStatu" Width="1.5" PointX="2.75" PointY="9.125" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Currency" Width="1.5" PointX="0.75" PointY="4.625" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.FixedRate" Width="1.5" PointX="0.75" PointY="10.375" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Log" Width="1.5" PointX="8.25" PointY="4.125" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Role" Width="1.5" PointX="1.5" PointY="18.125" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Town" Width="1.5" PointX="1.5" PointY="20.5" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.Transaction" Width="1.5" PointX="6" PointY="4.125" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.TransactionType" Width="1.5" PointX="6" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="DSAplcDatabaseModel.User" Width="1.5" PointX="0.75" PointY="12.875" Height="4.480205078124996" />
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Accounts_AccountType" >
+          <ConnectorPoint PointX="2.25" PointY="8.53125" />
+          <ConnectorPoint PointX="4.40625" PointY="8.53125" />
+          <ConnectorPoint PointX="4.40625" PointY="7.4609993489583388" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Accounts_Currency" >
+          <ConnectorPoint PointX="2.25" PointY="5.6151432291666694" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="5.6151432291666685" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="5.6151432291666694" />
+          <ConnectorPoint PointX="3" PointY="5.6151432291666694" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Accounts_FixedRates" >
+          <ConnectorPoint PointX="2.25" PointY="11.473084309895835" />
+          <ConnectorPoint PointX="4.3749975" PointY="11.473084309895835" />
+          <ConnectorPoint PointX="4.3749975" PointY="7.4609993489583388" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Accounts_Users" >
+          <ConnectorPoint PointX="2.25" PointY="15.115102539062498" />
+          <ConnectorPoint PointX="4.4375025" PointY="15.115102539062498" />
+          <ConnectorPoint PointX="4.4375025" PointY="7.4609993489583388" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Log_Accounts" >
+          <ConnectorPoint PointX="4.5" PointY="7.4609993489583388" />
+          <ConnectorPoint PointX="4.875" PointY="7.8359993489583388" />
+          <ConnectorPoint PointX="4.875" PointY="7.6340950520833317" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="7.6340950520833308" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="7.6340950520833317" />
+          <ConnectorPoint PointX="7.0729191666666669" PointY="7.6340950520833308" />
+          <ConnectorPoint PointX="7.2395858333333329" PointY="7.6340950520833317" />
+          <ConnectorPoint PointX="7.875" PointY="7.6340950520833317" />
+          <ConnectorPoint PointX="8.25" PointY="7.2590950520833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Appointments_Appointments" >
+          <ConnectorPoint PointX="5.5319230769230767" PointY="11.182190755208339" />
+          <ConnectorPoint PointX="5.5319230769230767" PointY="11.432190755208339" />
+          <ConnectorPoint PointX="5.9784615384615378" PointY="11.432190755208339" />
+          <ConnectorPoint PointX="5.9784615384615378" PointY="11.182190755208339" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Appointments_AppointmentStatus" >
+          <ConnectorPoint PointX="4.25" PointY="9.9228417968750016" />
+          <ConnectorPoint PointX="4.2916641666666671" PointY="9.9228417968750016" />
+          <ConnectorPoint PointX="4.5208358333333329" PointY="9.9228417968750016" />
+          <ConnectorPoint PointX="5" PointY="9.9228417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Log_Currency" >
+          <ConnectorPoint PointX="2.25" PointY="5.0888196145833344" />
+          <ConnectorPoint PointX="2.75" PointY="5.0888196145833344" />
+          <ConnectorPoint PointX="2.75" PointY="7.9609993489583388" />
+          <ConnectorPoint PointX="4.2916641666666671" PointY="7.9609993489583379" />
+          <ConnectorPoint PointX="4.5208358333333329" PointY="7.9609993489583388" />
+          <ConnectorPoint PointX="7.0729191666666669" PointY="7.9609993489583379" />
+          <ConnectorPoint PointX="7.2395858333333329" PointY="7.9609993489583388" />
+          <ConnectorPoint PointX="9.031252" PointY="7.9609993489583388" />
+          <ConnectorPoint PointX="9.031252" PointY="7.2590950520833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Transactions_Currency" >
+          <ConnectorPoint PointX="2.25" PointY="6.1414668437500044" />
+          <ConnectorPoint PointX="2.5" PointY="6.1414668437500044" />
+          <ConnectorPoint PointX="2.5" PointY="7.8359993489583388" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="7.8359993489583379" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="7.8359993489583388" />
+          <ConnectorPoint PointX="4.2916641666666671" PointY="7.8359993489583379" />
+          <ConnectorPoint PointX="4.5208358333333329" PointY="7.8359993489583388" />
+          <ConnectorPoint PointX="6.75" PointY="7.8359993489583388" />
+          <ConnectorPoint PointX="6.75" PointY="7.2590950520833246" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Log_TransactionType" >
+          <ConnectorPoint PointX="7.5" PointY="1.6439925130208337" />
+          <ConnectorPoint PointX="9" PointY="1.6439925130208337" />
+          <ConnectorPoint PointX="9" PointY="4.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Users_Towns" >
+          <ConnectorPoint PointX="1.5" PointY="21.297841796874998" />
+          <ConnectorPoint PointX="1.1249995" PointY="21.297841796874998" />
+          <ConnectorPoint PointX="1.1249995" PointY="17.355205078124996" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Transactions_TransactionType" >
+          <ConnectorPoint PointX="6.75" PointY="2.5379850260416674" />
+          <ConnectorPoint PointX="6.75" PointY="4.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.FK_Transactions_Users" >
+          <ConnectorPoint PointX="2.25" PointY="13.963798769531255" />
+          <ConnectorPoint PointX="4.3541691666666669" PointY="13.963798769531255" />
+          <ConnectorPoint PointX="4.5208358333333329" PointY="13.963798769531255" />
+          <ConnectorPoint PointX="7.1562525" PointY="13.963798769531255" />
+          <ConnectorPoint PointX="7.1562525" PointY="7.2590950520833246" />
+        </AssociationConnector>
+        <AssociationConnector Association="DSAplcDatabaseModel.UserRoles" >
+          <ConnectorPoint PointX="1.875" PointY="18.125" />
+          <ConnectorPoint PointX="1.875" PointY="17.355205078124996" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

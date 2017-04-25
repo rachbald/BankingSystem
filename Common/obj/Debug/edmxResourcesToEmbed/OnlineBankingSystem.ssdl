@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineBankingSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="OnlineBankingSystemModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="OnlineBankingSystemModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountType" EntityType="OnlineBankingSystemModel.Store.AccountType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Appointments" EntityType="OnlineBankingSystemModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AppointmentSlots" EntityType="OnlineBankingSystemModel.Store.AppointmentSlots" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AppointmentStatus" EntityType="OnlineBankingSystemModel.Store.AppointmentStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Currency" EntityType="OnlineBankingSystemModel.Store.Currency" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FixedRates" EntityType="OnlineBankingSystemModel.Store.FixedRates" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Log" EntityType="OnlineBankingSystemModel.Store.Log" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="OnlineBankingSystemModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Town" EntityType="OnlineBankingSystemModel.Store.Town" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="OnlineBankingSystemModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TransactionType" EntityType="OnlineBankingSystemModel.Store.TransactionType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRoles" EntityType="OnlineBankingSystemModel.Store.UserRoles" store:Type="Tables" store:Schema="dbo" store:Name="UserRoles">
+      <DefiningQuery>SELECT 
+      [UserRoles].[User] AS [User], 
+      [UserRoles].[Role] AS [Role]
+      FROM [dbo].[UserRoles] AS [UserRoles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Users" EntityType="OnlineBankingSystemModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Accounts_AccountType" Association="OnlineBankingSystemModel.Store.FK_Accounts_AccountType">
+      <End Role="AccountType" EntitySet="AccountType" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_FixedRates" Association="OnlineBankingSystemModel.Store.FK_Accounts_FixedRates">
+      <End Role="FixedRates" EntitySet="FixedRates" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Users" Association="OnlineBankingSystemModel.Store.FK_Accounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointments_AppointmentStatus" Association="OnlineBankingSystemModel.Store.FK_Appointments_AppointmentStatus">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointments_AppointmentStatus1" Association="OnlineBankingSystemModel.Store.FK_Appointments_AppointmentStatus1">
+      <End Role="AppointmentStatus" EntitySet="AppointmentStatus" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_TransactionType" Association="OnlineBankingSystemModel.Store.FK_Transactions_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionType" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Users" Association="OnlineBankingSystemModel.Store.FK_Transactions_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Role" Association="OnlineBankingSystemModel.Store.FK_UserRoles_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users" Association="OnlineBankingSystemModel.Store.FK_UserRoles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Towns" Association="OnlineBankingSystemModel.Store.FK_Users_Towns">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountNo" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Currency" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="Creation" Type="date" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="User" Type="int" Nullable="false" />
+    <Property Name="Rate" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Appointments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="User" Type="int" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppointmentSlots">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Weekday" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Time" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AppointmentStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="State" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="Currency" Type="varchar" Nullable="false" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="FixedRates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Months" Type="int" Nullable="false" />
+    <Property Name="Interest" Type="numeric" Nullable="false" Precision="3" Scale="2" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="AccountNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="User" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="CurrentAccount" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="SecondaryAccount" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Transaction" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'TheGreatSupermarket.dbo.UserRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="User" />
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="User" Type="int" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="Pin" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="EncryptedToken" Type="varbinary(max)" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Surname" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Street" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Town" Type="int" Nullable="false" />
+    <Property Name="NoOfAttempts" Type="int" Nullable="false" />
+    <Property Name="Blocked" Type="bit" Nullable="false" />
+    <Property Name="Dob" Type="date" Nullable="false" />
+    <Property Name="Token" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_Accounts_AccountType">
+    <End Role="AccountType" Type="OnlineBankingSystemModel.Store.AccountType" Multiplicity="1" />
+    <End Role="Accounts" Type="OnlineBankingSystemModel.Store.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_FixedRates">
+    <End Role="FixedRates" Type="OnlineBankingSystemModel.Store.FixedRates" Multiplicity="0..1" />
+    <End Role="Accounts" Type="OnlineBankingSystemModel.Store.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FixedRates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Rate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Users">
+    <End Role="Users" Type="OnlineBankingSystemModel.Store.Users" Multiplicity="1" />
+    <End Role="Accounts" Type="OnlineBankingSystemModel.Store.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointments_AppointmentStatus">
+    <End Role="Users" Type="OnlineBankingSystemModel.Store.Users" Multiplicity="1" />
+    <End Role="Appointments" Type="OnlineBankingSystemModel.Store.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointments_AppointmentStatus1">
+    <End Role="AppointmentStatus" Type="OnlineBankingSystemModel.Store.AppointmentStatus" Multiplicity="1" />
+    <End Role="Appointments" Type="OnlineBankingSystemModel.Store.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppointmentStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_TransactionType">
+    <End Role="TransactionType" Type="OnlineBankingSystemModel.Store.TransactionType" Multiplicity="1" />
+    <End Role="Transactions" Type="OnlineBankingSystemModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Users">
+    <End Role="Users" Type="OnlineBankingSystemModel.Store.Users" Multiplicity="1" />
+    <End Role="Transactions" Type="OnlineBankingSystemModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Role">
+    <End Role="Role" Type="OnlineBankingSystemModel.Store.Role" Multiplicity="1" />
+    <End Role="UserRoles" Type="OnlineBankingSystemModel.Store.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users">
+    <End Role="Users" Type="OnlineBankingSystemModel.Store.Users" Multiplicity="1" />
+    <End Role="UserRoles" Type="OnlineBankingSystemModel.Store.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Towns">
+    <End Role="Town" Type="OnlineBankingSystemModel.Store.Town" Multiplicity="1" />
+    <End Role="Users" Type="OnlineBankingSystemModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Town" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
